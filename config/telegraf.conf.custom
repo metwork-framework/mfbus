@@ -1,0 +1,4 @@
+{% extends "telegraf.conf" %}
+{% block custom %}
+
+{% endblock %}
