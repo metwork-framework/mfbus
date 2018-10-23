@@ -30,6 +30,19 @@ respawn = True
 hooks.before_start=circus_hooks.before_start_shell
 hooks.after_stop=circus_hooks.after_stop_shell
 working_dir = {{MODULE_RUNTIME_HOME}}/tmp
+
+[watcher:tmp_blob_store_clean]
+cmd={{MFBUS_HOME}}/bin/tmp_blob_store_clean.py
+args=
+numprocesses=1
+stdout_stream.class = FileStream
+stdout_stream.filename = {{MODULE_RUNTIME_HOME}}/log/tmp_blob_store_clean.log
+stderr_stream.class = FileStream
+stderr_stream.filename = {{MODULE_RUNTIME_HOME}}/log/tmp_blob_store_clean.log
+copy_env = True
+autostart = True
+respawn = True
+working_dir = {{MODULE_RUNTIME_HOME}}/tmp
 {% endraw %}
 
 {% endblock %}

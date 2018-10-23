@@ -1,3 +1,5 @@
+BINS=tmp_blob_store_clean.py
+
 include root.mk
 include $(MFEXT_HOME)/share/subdir_root.mk
 include $(MFCOM_HOME)/share/startup_scripts_profiles.mk
