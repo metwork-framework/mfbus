@@ -60,6 +60,7 @@ Content-Type: application/vnd.api+json
         }
     }
 }
+```
 
 If the operation is not successful, the service will respond with a:
 
@@ -75,4 +76,8 @@ to your request
 
 ### GET `/tmp_blob_store/{namespace}/blobs/{blob_uid}[?delete=1]`
 
+FIXME
+
 ### DELETE `/tmp_blob_store/{namespace}/blobs/{blob_uid}[?delete=1]`
+
+FIXME
