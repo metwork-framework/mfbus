@@ -193,6 +193,7 @@ end
 local tmp_blob_server = {}
 
 function tmp_blob_server.new_blob(namespace)
+    -- FIXME: global limit
     assert_valid_namespace(namespace)
     local blob_uid = synutil.get_unique_hexa_identifier()
     local content_type = ngx.header.x_tmpblobstore_contenttype
@@ -289,7 +290,5 @@ function tmp_blob_server.delete_blob(namespace, blob_uid)
         ngx.exit(200)
     end
 end
-
--- FIXME: cleaning
 
 return tmp_blob_server
