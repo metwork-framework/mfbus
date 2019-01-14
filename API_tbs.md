@@ -78,6 +78,9 @@ Get the given blob (the body posted with the previous `POST` request) or HTTP/40
 
 If `delete=1`, the blob is deleted just after the read. So, with this parameter, this is a "single use request".
 
-## DELETE `/tmp_blob_store/{namespace}/blobs/{blob_uid}`
+## DELETE `/tmp_blob_store/{namespace}/blobs/{blob_uid}[?move_to=/full/path]`
 
 Delete the given blob or HTTP/404.
+
+If `move_to=/full/path` is set, the blob content will be moved (or copied if the copy is not possible) to the given path. As it can be a security issue, this feature is disabled by default. After this call, in that specific case, you "own" the file. The blob is deleted from `mfbus` "database". This feature can be interesting to avoid some copies between local applications installed on the same box than `mfbus`
+
