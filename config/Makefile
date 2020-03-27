@@ -1,7 +1,7 @@
-CONFIGS=config.ini
+CONFIGS=config.ini nginx.conf mflog_override.conf
 
 include ../adm/root.mk
 include $(MFEXT_HOME)/share/subdir_root.mk
-include $(MFCOM_HOME)/share/config_subdir.mk
+include $(MFEXT_HOME)/share/config_subdir.mk
 
-all:: $(MODULE_HOME)/config/telegraf.conf $(MODULE_HOME)/config/circus.ini
+all:: $(MFMODULE_HOME)/config/circus.ini $(MFMODULE_HOME)/config/telegraf.conf

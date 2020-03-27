@@ -1,0 +1,58 @@
+{% extends "config.ini" %}
+
+{% block custom %}
+{% raw -%}
+
+#################
+##### NGINX #####
+#################
+[nginx]
+
+# If flag=0, do not start nginx (can be useful in very special use cases)
+flag=1
+
+# Port of nginx daemon
+# IMPORTANT: this is the main port of the mfserv module
+# Note: as metwork does not run as root user, you CAN'T use here a value < 1024
+port=12568
+
+# Max body size for incoming http requests (in MB)
+upload_max_body_size=100
+
+# Number of nginx workers
+# (the {{MFCOM_HARDWARE_NUMBER_OF_CPU_CORES_MULTIPLIED_BY_2}} special values
+#  is probably a good start)
+workers={{MFCOM_HARDWARE_NUMBER_OF_CPU_CORES_MULTIPLIED_BY_2}}
+
+# Default timeout (in seconds)
+# You can override this in plugin config.ini
+timeout=60
+
+# If logging=0, do not log anything in nginx_access.log
+logging=1
+
+# In which tmp directory nginx put big request bodies
+clientbody_temp_path=@@@MFMODULE_RUNTIME_HOME@@@/var/nginx2
+
+##################
+##### CIRCUS #####
+##################
+[circus]
+
+# You probably don't want to change anything in this section
+endpoint=ipc://{{MFMODULE_RUNTIME_HOME}}/var/circus.socket
+pubsub_endpoint=ipc://{{MFMODULE_RUNTIME_HOME}}/var/circus_pubsub.socket
+
+####################
+##### TELEGRAF #####
+####################
+[telegraf]
+
+# Telegraf statsd port (on this host)
+# Change this if it's already used
+statsd_port=18130
+
+# if debug=1, put telegraf in trace mode (WARNING: produce a lot of logs)
+debug=0
+{% endraw %}
+{% endblock %}
