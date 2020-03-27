@@ -1,6 +1,7 @@
 {% extends "circus.ini"  %}
 {% block custom %}
 
+{% raw %}
 {% if MFBUS_NGINX_FLAG == "1" %}
 [watcher:nginx]
 cmd=log_proxy_wrapper
@@ -14,4 +15,5 @@ hooks.after_stop=mfext.circus_hooks.after_stop_shell
 working_dir = {{MFMODULE_RUNTIME_HOME}}/tmp
 {% endif %}
 
+{% endraw %}
 {% endblock %}
