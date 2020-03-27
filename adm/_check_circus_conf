@@ -1,0 +1,12 @@
+#!/bin/bash
+
+RES=0
+echo -n "- Checking circus conf generation..."
+_make_circus_conf >/dev/null 2>&1
+if test $? -eq 0; then
+    echo_ok
+else
+    echo_nok
+    RES=1
+fi
+exit ${RES}

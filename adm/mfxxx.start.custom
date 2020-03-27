@@ -1,0 +1,9 @@
+{% extends "mfxxx.start" %}
+
+{% block custom %}
+
+if test "${MFBUS_NGINX_FLAG}" = "1"; then
+    _check_nginx_conf || RES=1
+fi
+
+{% endblock %}

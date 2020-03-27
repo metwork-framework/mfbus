@@ -1,0 +1,40 @@
+{% extends "mfxxx.status" %}
+{% block custom %}
+
+if test "${1}" != "QUIET"; then
+    _check_circus_conf || RES=1
+fi
+
+if test "${MFBUS_NGINX_FLAG}" = "1"; then
+    if test "${1}" != "QUIET"; then
+        _check_nginx_conf || RES=1
+    fi
+    circus_status_watcher.sh nginx || RES=1
+
+    if test "${RES}" = "0"; then
+        # FIXME: move to mfext
+        echo -n "- Checking nginx uuid..."
+        echo_running
+        nginx.status >/dev/null 2>&1
+        if test $? -eq 0; then
+            echo_ok
+        else
+            echo_nok
+            RES=1
+        fi
+    fi
+
+    if test "${RES}" = "0"; then
+        echo -n "- Checking nginx worker zombies..."
+        echo_running
+        find_zombies_nginx_workers.py >/dev/null 2>&1
+        if test $? -eq 0; then 
+            echo_ok
+        else
+            echo_nok "zombies found"
+            RES=1
+        fi
+    fi
+fi
+
+{% endblock %}

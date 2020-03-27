@@ -1,0 +1,10 @@
+{% extends "mfxxx.stop" %}
+
+{% block custom %}
+
+if test "${MFBUS_NGINX_FLAG}" = "1"; then
+    _circus_schedule_stop_watcher.sh nginx
+    _circus_wait_watcher_stopped.sh nginx
+fi
+
+{% endblock %}

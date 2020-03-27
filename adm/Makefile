@@ -1,3 +1,5 @@
+BINS=_check_nginx_conf _check_circus_conf
+
 include root.mk
 include $(MFEXT_HOME)/share/subdir_root.mk
 include $(MFEXT_HOME)/share/startup_scripts_profiles.mk
