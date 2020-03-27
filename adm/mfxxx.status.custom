@@ -15,7 +15,7 @@ if test "${MFBUS_NGINX_FLAG}" = "1"; then
         # FIXME: move to mfext
         echo -n "- Checking nginx uuid..."
         echo_running
-        nginx.status >/dev/null 2>&1
+        #nginx.status >/dev/null 2>&1
         nginx.status
         if test $? -eq 0; then
             echo_ok
