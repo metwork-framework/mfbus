@@ -14,7 +14,8 @@ flag=1
 # Port of nginx daemon
 # IMPORTANT: this is the main port of the mfserv module
 # Note: as metwork does not run as root user, you CAN'T use here a value < 1024
-port=12568
+#port=12568
+port=15605
 
 # Max body size for incoming http requests (in MB)
 upload_max_body_size=100
