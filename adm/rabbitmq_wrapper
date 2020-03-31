@@ -1,0 +1,27 @@
+#!/bin/bash
+
+function usage()
+{
+    echo "usage: /opt/metwork-mfbus-master/bin/rabbitmq_wrapper RABBITMQ_COMMAND [COMMAND_ARG1] [COMMAND_ARG2] [...]"
+    echo "  => launch the given rabbitmq command within rabbitmq environnent"
+}
+
+if test "$1" = ""; then
+    usage
+    exit 1
+fi
+if test "$1" = "--help"; then
+    usage
+    exit 0
+fi
+
+export RABBITMQ_HOME=`dirname $MFEXT_HOME/opt/rabbitmq/lib/rabbitmq/lib/rabbitmq_server*/./`
+export RABBITMQ_SCRIPTS_DIR=$RABBITMQ_HOME/sbin
+export RABBITMQ_MNESIA_BASE=$MFMODULE_RUNTIME_HOME/var/rabbitmq
+export RABBITMQ_LOGS='-'
+export RABBITMQ_LOG_BASE=$MFMODULE_RUNTIME_HOME/log
+export RABBITMQ_ENABLED_PLUGINS_FILE=$MFMODULE_RUNTIME_HOME/var/rabbitmq/enabled_plugins
+mkdir -p $RABBITMQ_MNESIA_BASE
+export PATH=$PATH:$RABBITMQ_SCRIPTS_DIR
+
+exec "$@" &
