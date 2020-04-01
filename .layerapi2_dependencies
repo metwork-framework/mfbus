@@ -1,3 +1,4 @@
+rabbitmq@mfext
 python3@mfext
 openresty@mfext
 #+python3_circus@mfext

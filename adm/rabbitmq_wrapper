@@ -24,4 +24,4 @@ export RABBITMQ_ENABLED_PLUGINS_FILE=$MFMODULE_RUNTIME_HOME/var/rabbitmq/enabled
 mkdir -p $RABBITMQ_MNESIA_BASE
 export PATH=$PATH:$RABBITMQ_SCRIPTS_DIR
 
-exec "$@" &
+exec "$@"
