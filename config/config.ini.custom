@@ -44,6 +44,14 @@ endpoint=ipc://{{MFMODULE_RUNTIME_HOME}}/var/circus.socket
 pubsub_endpoint=ipc://{{MFMODULE_RUNTIME_HOME}}/var/circus_pubsub.socket
 
 ####################
+##### RABBITMQ #####
+####################
+[rabbitmq]
+
+# If flag=0, do not start rabbitmq (can be useful in some cases)
+flag=1
+
+####################
 ##### TELEGRAF #####
 ####################
 [telegraf]
