@@ -1,6 +1,8 @@
 {% extends "mfxxx.status" %}
 {% block custom %}
 
+echo -n "On entre dans la partie locale de mfbus.status"
+
 if test "${1}" != "QUIET"; then
     _check_circus_conf || RES=1
 fi

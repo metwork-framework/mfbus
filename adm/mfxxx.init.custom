@@ -1,7 +1,0 @@
-{% extends "mfxxx.init" %}
-
-{% block custom %}
-
-echo -n "End of mfbus.init"
-
-{% endblock %}

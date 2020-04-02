@@ -2,6 +2,8 @@
 
 {% block custom %}
 
+echo -n "On entre dans la partie locale de mfbus.start"
+
 if test "${MFBUS_NGINX_FLAG}" = "1"; then
     _check_nginx_conf || RES=1
 fi
