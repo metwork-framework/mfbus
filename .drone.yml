@@ -2,15 +2,15 @@
 
 
 
-    
-    
 
 
 
-    
-        
-        
-    
+
+
+
+
+
+
 
 
 bootstrap_common: &bootstrap_common
@@ -83,6 +83,7 @@ integration_tests_common: &integration_tests_common
     - yum -y install make
 
     - su --command="mfbus.init" - mfbus
+    - echo "On va lancer mfbus.start"
     - su --command="mfbus.start" - mfbus
     - su --command="mfbus.status" - mfbus
     - if test -d "integration_tests"; then chown -R mfbus integration_tests; cd integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfbus; cd ..; fi
@@ -206,9 +207,9 @@ pipeline:
 
   integration_tests_integration:
     <<: *integration_tests_common
-    
+
     image: metwork/mfxxx-${OS_VERSION}-testimage:integration
-    
+
     environment:
       - DEP_BRANCH=integration
     when:
@@ -218,9 +219,9 @@ pipeline:
       branch: [ integration, ci_*, pci_* ]
   integration_tests:
     <<: *integration_tests_common
-    
+
     image: metwork/mfxxx-${OS_VERSION}-testimage:${DRONE_BRANCH}
-    
+
     environment:
       - DEP_BRANCH=${DRONE_BRANCH}
     when:
