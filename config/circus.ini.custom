@@ -15,5 +15,16 @@ hooks.after_stop=mfext.circus_hooks.after_stop_shell
 working_dir = {{MFMODULE_RUNTIME_HOME}}/tmp
 {% endif %}
 
+[watcher:rabbitmq]
+cmd=log_proxy_wrapper
+args=--stdout rabbitmq_access.log --stderr rabbitmq_error.log -- {{MFMODULE_HOME}}/bin/rabbitmq_wrapper rabbitmq-server
+numprocesses=1
+copy_env = True
+autostart = True
+respawn = True
+hooks.before_start=mfext.circus_hooks.before_start_shell
+hooks.after_stop=mfext.circus_hooks.after_stop_shell
+working_dir = {{MFMODULE_RUNTIME_HOME}}/tmp
+
 {% endraw %}
 {% endblock %}
