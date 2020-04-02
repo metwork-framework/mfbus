@@ -83,7 +83,6 @@ integration_tests_common: &integration_tests_common
     - yum -y install make
 
     - su --command="mfbus.init" - mfbus
-    - echo "On va lancer mfbus.start"
     - su --command="mfbus.start" - mfbus
     - su --command="mfbus.status" - mfbus
     - if test -d "integration_tests"; then chown -R mfbus integration_tests; cd integration_tests; su --command="cd `pwd`; ./run_integration_tests.sh" - mfbus; cd ..; fi

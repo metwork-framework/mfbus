@@ -17,13 +17,13 @@ if test "${MFBUS_RABBITMQ_FLAG}" = "1"; then
         echo_nok
     fi
     _circus_wait_watcher_stopped.sh rabbitmq
-    echo -n "- Killing epdm daemon..."
-    epmd -port ${MFBUS_RABBITMQ_EPMD_PORT} -kill
-    if test $? -eq 0; then 
-        echo_ok
-    else
-        echo_nok
-    fi
+    #echo -n "- Killing epdm daemon..."
+    #epmd -port ${MFBUS_RABBITMQ_EPMD_PORT} -kill
+    #if test $? -eq 0; then 
+    #    echo_ok
+    #else
+    #    echo_nok
+    #fi
 fi
 
 {% endblock %}
