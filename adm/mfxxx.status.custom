@@ -39,16 +39,15 @@ fi
 
 if test "${MFBUS_RABBITMQ_FLAG}" = "1"; then
     circus_status_watcher.sh rabbitmq || RES=1
-    sleep 2
-    echo -n "- Checking rabbitmq status..."
-    echo_running
-    rabbitmq_wrapper rabbitmqctl status >/dev/null 2>&1
-    if test $? -eq 0; then 
-        echo_ok
-    else
-        echo_nok "rabbitmq not ok"
-        RES=1
-    fi
+    #echo -n "- Checking rabbitmq status..."
+    #echo_running
+    #rabbitmq_wrapper rabbitmqctl status >/dev/null 2>&1
+    #if test $? -eq 0; then 
+    #    echo_ok
+    #else
+    #    echo_nok "rabbitmq not ok"
+    #    RES=1
+    #fi
 
 fi
 
