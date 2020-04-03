@@ -40,9 +40,8 @@ fi
 if test "${MFBUS_RABBITMQ_FLAG}" = "1"; then
     circus_status_watcher.sh rabbitmq || RES=1
     echo -n "- Checking rabbitmq status..."
-    sleep 3
     echo_running
-    rabbitmq_wrapper rabbitmqctl status >/dev/null 2>&1
+    check_rabbitmq_status.py
     if test $? -eq 0; then 
         echo_ok
     else
