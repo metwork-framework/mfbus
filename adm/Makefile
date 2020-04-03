@@ -1,4 +1,4 @@
-BINS=_check_nginx_conf _check_circus_conf rabbitmq_wrapper
+BINS=_check_nginx_conf _check_circus_conf rabbitmq_wrapper before_start_rabbitmq
 
 include root.mk
 include $(MFEXT_HOME)/share/subdir_root.mk

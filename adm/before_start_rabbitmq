@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cat "${MFMODULE_HOME}/config/rabbitmq.conf" |envtpl --reduce-multi-blank-lines >"${MFMODULE_RUNTIME_HOME}/tmp/config_auto/rabbitmq.conf"
+if test -s "${MFMODULE_RUNTIME_HOME}/tmp/config_auto/rabbitmq.conf"; then
+    exit 0
+else
+    exit 1
+fi

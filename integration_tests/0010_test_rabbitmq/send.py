@@ -2,13 +2,16 @@
 
 from time import sleep
 import pika
+import os
 
 max_tries = 10
 nb_tries = 0
+port = int(os.getenv('MFBUS_RABBITMQ_AMQP_PORT'))
+
 while nb_tries <= max_tries:
     try:
         connection = pika.BlockingConnection(
-            pika.ConnectionParameters('localhost'))
+            pika.ConnectionParameters('localhost', port))
         channel = connection.channel()
         print(" Connection ok")
         break
