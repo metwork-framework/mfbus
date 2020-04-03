@@ -10,6 +10,7 @@ while nb_tries <= max_tries:
         connection = pika.BlockingConnection(
             pika.ConnectionParameters('localhost'))
         channel = connection.channel()
+        print(" Connection ok")
         break
     except Exception as e:
         print(" Connection Error, try %d" % nb_tries)
