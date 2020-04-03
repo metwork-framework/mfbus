@@ -52,8 +52,10 @@ pubsub_endpoint=ipc://{{MFMODULE_RUNTIME_HOME}}/var/circus_pubsub.socket
 flag=1
 
 # Port AMQP of rabbitmq-server.
-# WARNING ! The port actually used will be 20000 + node_port !
-node_port=5672
+amqp_port=5672
+
+# Internal port of rabbitmq-server.
+dist_port=25672
 
 # Port of epmd (erlang) daemon
 epmd_port=4369

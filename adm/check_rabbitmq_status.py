@@ -13,19 +13,12 @@ while nb_tries <= max_tries:
         connection = pika.BlockingConnection(
             pika.ConnectionParameters('localhost', port))
         channel = connection.channel()
-        print(" Connection ok")
-        break
+        print("RabbitMQ Connection ok")
+        exit(0)
     except Exception as e:
-        print(" Connection Error, try %d" % nb_tries)
+        print("RabbitMQ Connection Error, try %d, sleeping 1s" % nb_tries)
         nb_tries += 1
         if nb_tries == max_tries:
-            print(" No more tries ==> exit")
+            print("RabbitMQ Connection Fails after 10s")
             exit(1)
         sleep(1)
-
-channel.queue_declare(queue='hello')
-channel.basic_publish(exchange='',
-                      routing_key='hello',
-                      body='Hello World!')
-print(" [x] Sent 'Hello World!'")
-connection.close()

@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
 import pika
+import os
+port = int(os.getenv('MFBUS_RABBITMQ_AMQP_PORT'))
 
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+connection = pika.BlockingConnection(
+    pika.ConnectionParameters('localhost', port))
 channel = connection.channel()
 channel.queue_declare(queue='hello')
 
