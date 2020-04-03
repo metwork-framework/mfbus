@@ -5,7 +5,7 @@ import pika
 import os
 
 max_tries = 10
-nb_tries = 0
+nb_tries = 1
 port = int(os.getenv('MFBUS_RABBITMQ_AMQP_PORT'))
 
 while nb_tries <= max_tries:
