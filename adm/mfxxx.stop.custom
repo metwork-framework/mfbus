@@ -9,13 +9,15 @@ fi
 
 if test "${MFBUS_RABBITMQ_FLAG}" = "1"; then
     _circus_schedule_stop_watcher.sh rabbitmq
-    _circus_wait_watcher_stopped.sh rabbitmq
     if test `ps -ef | grep erts | wc -l` -gt 1; then
-        ps -ef | grep erts | wc -l
         echo -e "- Stopping rabbitmq-server..."
         rabbitmq_wrapper rabbitmqctl shutdown >/dev/null 2>&1
+        _circus_wait_watcher_stopped.sh rabbitmq
         echo -e "- Killing epdm daemon..."
         epmd -port ${MFBUS_RABBITMQ_EPMD_PORT} -kill >/dev/null 2>&1
+        sleep 1
+    else
+        _circus_wait_watcher_stopped.sh rabbitmq
     fi
 fi
 
