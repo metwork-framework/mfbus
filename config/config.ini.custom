@@ -57,6 +57,9 @@ amqp_port=5672
 # Internal port of rabbitmq-server.
 dist_port=25672
 
+# Port of management plugin
+management_port=15672
+
 # Port of epmd (erlang) daemon
 epmd_port=4369
 
