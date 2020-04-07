@@ -4,6 +4,7 @@
 ## [Unreleased]
 
 ### New Features
+- enable and load management plugin
 - add basic integration test on rabbitmq
 - Add port configuration for rabbitmq and erlang
 - rabbitmq-server is run by circus
