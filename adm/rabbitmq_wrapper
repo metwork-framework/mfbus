@@ -15,12 +15,12 @@ if test "$1" = "--help"; then
     exit 0
 fi
 
-export RABBITMQ_HOME=`dirname $MFEXT_HOME/opt/rabbitmq/lib/rabbitmq/lib/rabbitmq_server*/./`
-export RABBITMQ_SCRIPTS_DIR=$RABBITMQ_HOME/sbin
-export RABBITMQ_LOGS='-'
-export PATH=$PATH:$RABBITMQ_SCRIPTS_DIR
-export RABBITMQ_DIST_PORT=$MFBUS_RABBITMQ_DIST_PORT
-export RABBITMQ_CONFIG_FILE=$MFMODULE_RUNTIME_HOME/tmp/config_auto/rabbitmq
-export ERL_EPMD_PORT=$MFBUS_RABBITMQ_EPMD_PORT
+export RABBITMQ_HOME="${MFEXT_HOME}/opt/rabbitmq/lib/rabbitmq/lib/rabbitmq_server"
+export RABBITMQ_SCRIPTS_DIR="${RABBITMQ_HOME}/sbin"
+export RABBITMQ_LOGS="-"
+export PATH="${PATH}:${RABBITMQ_SCRIPTS_DIR}"
+export RABBITMQ_DIST_PORT="${MFBUS_RABBITMQ_DIST_PORT}"
+export RABBITMQ_CONFIG_FILE="${MFMODULE_RUNTIME_HOME}/tmp/config_auto/rabbitmq"
+export ERL_EPMD_PORT="${MFBUS_RABBITMQ_EPMD_PORT}"
 
 exec "$@"

@@ -24,6 +24,7 @@ copy_env = True
 autostart = True
 respawn = True
 hooks.before_start=mfext.circus_hooks.before_start_shell
+hooks.before_signal=mfext.circus_hooks.before_signal_shell2
 hooks.after_stop=mfext.circus_hooks.after_stop_shell
 working_dir = {{MFMODULE_RUNTIME_HOME}}/tmp
 {% endif %}

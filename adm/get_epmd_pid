@@ -1,0 +1,18 @@
+#!/bin/bash
+
+N=$(pgrep -u "${MFMODULE_RUNTIME_USER}" epmd |wc -l)
+if test "${N}" -eq 0; then
+    exit 0
+fi
+
+for PID in $(pgrep -u "${MFMODULE_RUNTIME_USER}" epmd); do
+    N=$(strings "/proc/${PID}/environ" |grep -c "^ERL_EPMD_PORT=${MFBUS_RABBITMQ_EPMD_PORT}$")
+    if test "${N}" -eq 0; then
+        # This is not a mfbus empd instance?
+        # => ignoring
+        continue
+    fi
+    echo "${PID}"
+    break
+done
+exit 0
