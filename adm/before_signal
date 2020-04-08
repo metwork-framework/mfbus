@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if test "${1}" = "rabbitmq"; then
+    if test "${3}" = "15"; then
+        timeout 30s rabbitmq_wrapper rabbitmqctl shutdown --wait >/dev/null 2>&1
+        # for rabbitmq we have a custom shutdown procedure, so we block signals
+        # with special exit code 200
+        exit 200
+    fi
+fi
+exit 0

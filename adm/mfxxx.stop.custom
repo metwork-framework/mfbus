@@ -8,16 +8,29 @@ if test "${MFBUS_NGINX_FLAG}" = "1"; then
 fi
 
 if test "${MFBUS_RABBITMQ_FLAG}" = "1"; then
+    # for the record as signals are blocked by before_signal hook
     _circus_schedule_stop_watcher.sh rabbitmq
-    if test `ps -ef | grep erts | wc -l` -gt 1; then
-        echo -e "- Stopping rabbitmq-server..."
-        rabbitmq_wrapper rabbitmqctl shutdown >/dev/null 2>&1
-        _circus_wait_watcher_stopped.sh rabbitmq
-        echo -e "- Killing epdm daemon..."
-        epmd -port ${MFBUS_RABBITMQ_EPMD_PORT} -kill >/dev/null 2>&1
-        sleep 1
-    else
-        _circus_wait_watcher_stopped.sh rabbitmq
+    _circus_wait_watcher_stopped.sh rabbitmq
+    N=$(pgrep -u "${MFMODULE_RUNTIME_USER}" epmd |wc -l)
+    PID=$(get_epmd_pid)
+    if test "${PID}" != ""; then
+        echo -n "- Stopping epmd daemon..."
+        echo_running
+        timeout 20s epmd -port "${MFBUS_RABBITMQ_EPMD_PORT}" -kill >/dev/null 2>&1
+        I=0
+        while test "${I}" -lt 20; do 
+            PID=$(get_epmd_pid)
+            if test "${PID}" = ""; then
+                break
+            fi
+            sleep 1
+            I=$(expr ${I} + 1)
+        done
+        if test "${I}" -lt 20; then
+            echo_ok
+        else
+            echo_nok
+        fi
     fi
 fi
 
