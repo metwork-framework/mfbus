@@ -36,7 +36,7 @@ build_common: &build_common
     - OUTPUT=`git status --short`
     - if test "$${OUTPUT}" != ""; then echo "ERROR non empty git status output $${OUTPUT}"; echo "git diff output"; git diff; exit 1; fi
 
-    - yum -y install metwork-mfext-layer-rabbitmq-$${DEP_BRANCH}
+    - yum -y install metwork-mfext-layer-rabbitmq-${DRONE_BRANCH##release_}
 
     - MODULEHASH=`/opt/metwork-mfbus-$${TARGET_DIR}/bin/mfbus_wrapper module_hash 2>module_hash.debug` # FIXME: module_hash for addons ?
     - if test -f /opt/metwork-mfbus-$${TARGET_DIR}/.dhash; then cat /opt/metwork-mfbus-$${TARGET_DIR}/.dhash; fi
