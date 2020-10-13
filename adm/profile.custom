@@ -1,0 +1,11 @@
+{% extends "profile" %}
+
+{% block custom %}
+if test ! -d ${MFEXT_HOME}/opt/rabbitmq; then
+    echo_bold "ERROR: layer rabbitmq@mfext is not installed"
+    echo_bold "You need to install this layer : use 'yum install metwork-mfext-layer-rabbitmq'"
+    export PROFILE_ERROR=1
+    unset METWORK_PROFILE_LOADING
+    return 1
+fi
+{% endblock %}
