@@ -44,7 +44,7 @@ jobs:
       - name: bootstrap
         if: ${{ steps.SetVariables.outputs.branch != 'null' }}
         run: |
-          export TARGET_DIR=${{ steps.SetVariables.outputs.target_dir }}
+          TARGET_DIR=${{ steps.SetVariables.outputs.target_dir }}
           DEP_DIR=${{ steps.SetVariables.outputs.dep_dir }}
           BUILDIMAGE=${{ steps.SetVariables.outputs.buildimage }}
           docker run ${DOCKER_RUN_OPTIONS} -e DEP_DIR=${DEP_DIR} --rm ${BUILDIMAGE} /bin/bash -c "${DOCKER_WORKFLOW_SCRIPTS_DIR}/bootstrap.sh"
@@ -52,8 +52,8 @@ jobs:
         if: ${{ steps.SetVariables.outputs.branch != 'null' }}
         id: BuildStep
         run: |
-          export TARGET_DIR=${{ steps.SetVariables.outputs.target_dir }}
-          export REPO=${{ steps.SetVariables.outputs.repository }}
+          TARGET_DIR=${{ steps.SetVariables.outputs.target_dir }}
+          REPO=${{ steps.SetVariables.outputs.repository }}
           BRANCH=${{ steps.SetVariables.outputs.branch }}
           TAG=${{ steps.SetVariables.outputs.tag }}
           DEP_BRANCH=${{ steps.SetVariables.outputs.dep_branch }}
