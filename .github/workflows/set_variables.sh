@@ -7,7 +7,6 @@ if test "${OS_VERSION:-}" = ""; then
     exit 1
 fi
 
-R=${GITHUB_REPOSITORY#metwork-framework/}
 case "${GITHUB_EVENT_NAME}" in
     repository_dispatch)
         B=${PAYLOAD_BRANCH};;
@@ -80,7 +79,6 @@ fi
 echo "::set-output name=branch::${B}"
 echo "::set-output name=tag::${TAG}"
 echo "::set-output name=dep_branch::${DEP_BRANCH}"
-echo "::set-output name=repository::${R}"
 echo "::set-output name=target_dir::${TARGET_DIR}"
 echo "::set-output name=dep_dir::${DEP_DIR}"
 echo "::set-output name=buildimage::metwork/mfxxx-${OS_VERSION}-buildimage:${DEP_BRANCH}"
