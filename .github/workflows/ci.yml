@@ -60,9 +60,9 @@ jobs:
         if: ${{ github.event_name != 'pull_request' && steps.SetVariables.outputs.branch != 'null' }}
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.PUB_HOST }}
-          username: ${{ secrets.PUB_USERNAME }}
-          password: ${{ secrets.PUB_PASSWORD }}
+          host: ${{ secrets.METWORKPUB_HOST }}
+          username: ${{ secrets.METWORKPUB_USERNAME }}
+          password: ${{ secrets.METWORKPUB_PASSWORD }}
           port: 22
           script: |
             pwd
@@ -73,9 +73,9 @@ jobs:
           REMOTE: ${{ steps.SetVariables.outputs.buildlog_dir }}
           LOCAL: ${{ github.workspace }}/buildlogs
         with:
-          host: ${{ secrets.PUB_HOST }}
-          user: ${{ secrets.PUB_USERNAME }}
-          pass: ${{ secrets.PUB_PASSWORD }}
+          host: ${{ secrets.METWORKPUB_HOST }}
+          user: ${{ secrets.METWORKPUB_USERNAME }}
+          pass: ${{ secrets.METWORKPUB_PASSWORD }}
           port: 22
           first_ssh: |
             mkdir -p ${REMOTE}
@@ -94,9 +94,9 @@ jobs:
           REMOTE: ${{ steps.SetVariables.outputs.rpm_dir }}
           LOCAL: ${{ github.workspace }}/rpms
         with:
-          host: ${{ secrets.PUB_HOST }}
-          user: ${{ secrets.PUB_USERNAME }}
-          pass: ${{ secrets.PUB_PASSWORD }}
+          host: ${{ secrets.METWORKPUB_HOST }}
+          user: ${{ secrets.METWORKPUB_USERNAME }}
+          pass: ${{ secrets.METWORKPUB_PASSWORD }}
           port: 22
           first_ssh: |
             mkdir -p ${REMOTE}
@@ -111,9 +111,9 @@ jobs:
           REMOTE: ${{ steps.SetVariables.outputs.doc_dir }}
           LOCAL: ${{ github.workspace }}/html_doc
         with:
-          host: ${{ secrets.PUB_HOST }}
-          user: ${{ secrets.PUB_USERNAME }}
-          pass: ${{ secrets.PUB_PASSWORD }}
+          host: ${{ secrets.METWORKPUB_HOST }}
+          user: ${{ secrets.METWORKPUB_USERNAME }}
+          pass: ${{ secrets.METWORKPUB_PASSWORD }}
           port: 22
           first_ssh: |
             rm -rf ${REMOTE}
