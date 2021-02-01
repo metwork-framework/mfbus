@@ -52,7 +52,7 @@ fi
 if test -d docs; then make docs >${BUILDLOGS}/make_doc.log 2>&1 || ( tail -200 ${BUILDLOGS}/make_doc.log ; exit 1 ); fi
 if test -d doc; then make doc >${BUILDLOGS}/make_doc.log 2>&1 || ( tail -200 ${BUILDLOGS}/make_doc.log ; exit 1 ); fi
 rm -Rf html_doc
-if test -d /opt/metwork-mfbus-${TARGET_DIR}/html_doc; then cp -Rf /opt/metwork-mfext-${TARGET_DIR}/html_doc . ; fi
+if test -d /opt/metwork-mfbus-${TARGET_DIR}/html_doc; then cp -Rf /opt/metwork-mfbus-${TARGET_DIR}/html_doc . ; fi
 make test >${BUILDLOGS}/make_test.log 2>&1 || ( tail -200 ${BUILDLOGS}/make_test.log ; exit 1 )
 make RELEASE_BUILD=${GITHUB_RUN_NUMBER} rpm >${BUILDLOGS}/make_rpm.log 2>&1 || ( tail -200 ${BUILDLOGS}/make_rpm.log ; exit 1 )
 
