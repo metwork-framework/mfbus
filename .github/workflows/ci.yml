@@ -103,7 +103,7 @@ jobs:
           scp: |
             '${LOCAL}/metwork-*.rpm' => ${REMOTE}
           last_ssh: |
-            createrepo ${REMOTE} 
+            createrepo --update ${REMOTE} 
       - name: publish doc
         if: ${{ github.event_name != 'pull_request' && steps.SetVariables.outputs.branch != 'null' }}
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest
