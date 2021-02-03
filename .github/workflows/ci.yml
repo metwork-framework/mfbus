@@ -43,7 +43,9 @@ jobs:
         if: ${{ steps.SetVariables.outputs.branch != 'null' }}
         run: |
           TARGET_DIR=${{ steps.SetVariables.outputs.target_dir }}
-          DEP_DIR=${{ steps.SetVariables.outputs.dep_dir }}
+          BRANCH=${{ steps.SetVariables.outputs.branch }}{% endraw %
+          TAG={% raw %}${{ steps.SetVariables.outputs.tag }}{% endraw %
+          DEP_DIR={% raw %}${{ steps.SetVariables.outputs.dep_dir }}
           BUILDIMAGE=${{ steps.SetVariables.outputs.buildimage }}
           docker run ${DOCKER_RUN_OPTIONS} -e TARGET_DIR=${TARGET_DIR} -e DEP_DIR=${DEP_DIR} --rm ${BUILDIMAGE} /bin/bash -c "${DOCKER_WORKFLOW_SCRIPTS_DIR}/bootstrap_ci.sh"
       - name: build
