@@ -9,7 +9,6 @@ on:
       - release_*
       - ci*
       - pci* 
-      - github*
     tags:
       - v*
   pull_request:
@@ -122,12 +121,3 @@ jobs:
             mkdir -p ${REMOTE}
           scp: |
             '${LOCAL}/*' => ${REMOTE}
-      - name: trigger
-        if: ${{ github.event_name != 'pull_request' && steps.SetVariables.outputs.branch != 'null' }}
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.METWORK_ACCESS_TOKEN }}
-          repository: metwork-framework/docker-mfbaseplugins-centos8-buildimage
-          event-type: metwork-trigger
-          client-payload: '{"branch": "${{ steps.SetVariables.outputs.branch }}"}'
-
