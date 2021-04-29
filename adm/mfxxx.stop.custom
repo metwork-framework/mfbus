@@ -2,11 +2,6 @@
 
 {% block custom %}
 
-if test "${MFBUS_NGINX_FLAG}" = "1"; then
-    _circus_schedule_stop_watcher.sh nginx
-    _circus_wait_watcher_stopped.sh nginx
-fi
-
 if test "${MFBUS_RABBITMQ_FLAG}" = "1"; then
     # for the record as signals are blocked by before_signal hook
     _circus_schedule_stop_watcher.sh rabbitmq
