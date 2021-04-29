@@ -1,4 +1,4 @@
-CONFIGS=config.ini nginx.conf mflog_override.conf rabbitmq.conf enabled_plugins
+CONFIGS=config.ini mflog_override.conf rabbitmq.conf enabled_plugins
 
 include ../adm/root.mk
 include $(MFEXT_HOME)/share/subdir_root.mk

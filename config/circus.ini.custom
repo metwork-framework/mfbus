@@ -2,18 +2,6 @@
 {% block custom %}
 
 {% raw %}
-{% if MFBUS_NGINX_FLAG == "1" %}
-[watcher:nginx]
-cmd=log_proxy_wrapper
-args=--stdout nginx_access.log --stderr nginx_error.log -- {{MFEXT_HOME}}/opt/openresty/nginx/sbin/nginx -p {{MFMODULE_RUNTIME_HOME}}/tmp/nginx_tmp_prefix -c {{MFMODULE_RUNTIME_HOME}}/tmp/config_auto/nginx.conf
-numprocesses=1
-copy_env = True
-autostart = True
-respawn = True
-hooks.before_start=mfext.circus_hooks.before_start_shell
-hooks.after_stop=mfext.circus_hooks.after_stop_shell
-working_dir = {{MFMODULE_RUNTIME_HOME}}/tmp
-{% endif %}
 
 {% if MFBUS_RABBITMQ_FLAG == "1" %}
 [watcher:rabbitmq]
@@ -21,7 +9,7 @@ cmd=log_proxy_wrapper
 args=--stdout rabbitmq_access.log --stderr rabbitmq_error.log -- {{MFMODULE_HOME}}/bin/rabbitmq_wrapper rabbitmq-server
 numprocesses=1
 copy_env = True
-autostart = True
+autostart = False
 respawn = True
 hooks.before_start=mfext.circus_hooks.before_start_shell
 hooks.before_signal=mfext.circus_hooks.before_signal_shell2

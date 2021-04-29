@@ -50,7 +50,7 @@ for rep in $list_rep; do
                             echo ""
                         fi
                     done
-                    for F in ${MFMODULE_RUNTIME_HOME}/tmp/config_auto/nginx.conf ${MFMODULE_RUNTIME_HOME}/tmp/config_auto/circus.ini; do
+                    for F in ${MFMODULE_RUNTIME_HOME}/tmp/config_auto/circus.ini; do
                         if test -f "${F}"; then
                             echo "===== ${F} content to debug ====="
                             cat "${F}"

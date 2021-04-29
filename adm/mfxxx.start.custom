@@ -1,9 +1,10 @@
 {% extends "mfxxx.start" %}
 
 {% block custom %}
-
-if test "${MFBUS_NGINX_FLAG}" = "1"; then
-    _check_nginx_conf || RES=1
+if test "${MFBUS_RABBITMQ_FLAG}" = "1"; then
+    _circus_schedule_start_watcher.sh rabbitmq || RES=1
+    if test "${RES}" = "0"; then
+        mfprogress --timeout=60 --title="- Waiting rabbitmq..." -- repeat.sh rabbitmq.status || RES=1
+    fi
 fi
-
 {% endblock %}
