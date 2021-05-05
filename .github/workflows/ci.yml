@@ -18,14 +18,20 @@ on:
 
 env:
     OS_VERSION: centos6
+
+
     DOCKER_RUN_OPTIONS: "-v ${{ github.workspace }}:/src -e GITHUB_REF -e GITHUB_RUN_NUMBER -e GITHUB_SHA -e GITHUB_REPOSITORY -e OS_VERSION"
+
     WORKFLOW_SCRIPTS_DIR: .github/workflows
     DOCKER_WORKFLOW_SCRIPTS_DIR: /src/.github/workflows
     PAYLOAD_BRANCH: ${{ github.event.client_payload.branch}}
 
 jobs:
   ci_build:
+
+
     runs-on: ubuntu-latest
+
     steps:
       - name: checkout
         uses: actions/checkout@v2
@@ -74,7 +80,7 @@ jobs:
           scp: |
             '${LOCAL}/*' => ${REMOTE}
       - name: integration tests
-        if: ${{ steps.SetVariables.outputs.branch != 'null' }}
+        if: ${{ steps.SetVariables.outputs.branch != 'null' && steps.BuildStep.outputs.bypass == 'false' }}
         run: |
           TESTIMAGE=${{ steps.SetVariables.outputs.testimage }}
           DEP_BRANCH=${{ steps.SetVariables.outputs.dep_branch }}
@@ -128,3 +134,6 @@ jobs:
             mkdir -p ${REMOTE}
           scp: |
             '${LOCAL}/*' => ${REMOTE}
+
+
+
