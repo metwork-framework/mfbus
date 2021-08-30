@@ -22,7 +22,7 @@ case "${GITHUB_EVENT_NAME}" in
             OS_VERSION=`cat .build_os`
         else
             OS_VERSION=centos6
-        fi;;
+        fi
         case "${GITHUB_BASE_REF}" in
             master | integration | experimental* | release_* | ci* | pci*)
                 B=${GITHUB_BASE_REF};;
@@ -34,7 +34,7 @@ case "${GITHUB_EVENT_NAME}" in
             OS_VERSION=`cat .build_os`
         else
             OS_VERSION=${PAYLOAD_OS}
-        fi;;
+        fi
         case "${GITHUB_REF}" in
             refs/tags/v*)
                 B=`git branch -a --contains "${GITHUB_REF}" | grep remotes | grep release_ | cut -d"/" -f3`;;
