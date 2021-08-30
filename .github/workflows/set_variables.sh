@@ -33,7 +33,7 @@ case "${GITHUB_EVENT_NAME}" in
         if [ -f .build_os ]; then
             OS_VERSION=`cat .build_os`
         else
-            OS_VERSION=${PAYLOAD_OS}
+            OS_VERSION=centos6
         fi
         case "${GITHUB_REF}" in
             refs/tags/v*)
