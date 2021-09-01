@@ -14,7 +14,6 @@ echo -e "gpgcheck=0\n\enabled=1\n\metadata_expire=0\n" >>/etc/yum.repos.d/metwor
 
     yum -y localinstall ./rpms/metwork-mfbus*.rpm
     yum -y install make
-
     su --command="mfbus.init" - mfbus
     su --command="mfbus.start" - mfbus
     su --command="mfbus.status" - mfbus
