@@ -55,4 +55,4 @@ mv /opt/metwork-mfbus-${TARGET_DIR}/*.rpm rpms
 
  
 
-echo "bypass=false" >> ${GITHUB_OUTPUT}
+echo "bypass=false" >> github_output
