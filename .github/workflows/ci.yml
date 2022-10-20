@@ -19,7 +19,7 @@ on:
 env:
 
 
-    DOCKER_RUN_OPTIONS: "-v ${{ github.workspace }}:/src -v ${RUNNER_TEMP}:/temp_runner -e GITHUB_REF -e GITHUB_RUN_NUMBER -e GITHUB_SHA -e GITHUB_REPOSITORY -e GITHUB_OUTPUT"
+    DOCKER_RUN_OPTIONS: "-v ${{ github.workspace }}:/src -v ${RUNNER_TEMP}:/tmp-runner -e GITHUB_REF -e GITHUB_RUN_NUMBER -e GITHUB_SHA -e GITHUB_REPOSITORY -e GITHUB_OUTPUT"
 
     WORKFLOW_SCRIPTS_DIR: .github/workflows
     DOCKER_WORKFLOW_SCRIPTS_DIR: /src/.github/workflows
