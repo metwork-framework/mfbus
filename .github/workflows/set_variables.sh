@@ -101,8 +101,7 @@ fi
     
 
 
-echo "branch=null" >> ${GITHUB_OUTPUT}
-#echo "branch=${B}" >> ${GITHUB_OUTPUT}
+echo "branch=${B}" >> ${GITHUB_OUTPUT}
 echo "os=${OS_VERSION}" >> ${GITHUB_OUTPUT}
 echo "tag=${TAG}" >> ${GITHUB_OUTPUT}
 echo "dep_branch=${DEP_BRANCH}" >> ${GITHUB_OUTPUT}
