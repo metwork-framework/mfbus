@@ -19,6 +19,7 @@ export DRONE=true
     yum -y install metwork-mfext-layer-rabbitmq-${DRONE_BRANCH##release_}
 
 
+git config --global --add safe.directory /src
 cd /src
 
 
