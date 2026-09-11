@@ -14,9 +14,15 @@ export DRONE=true
 
     if test "${OS_VERSION}" = "centos8"; then export METWORK_BUILD_OS=generic; else export METWORK_BUILD_OS=${OS_VERSION}; fi
 
+case "${BRANCH}" in
+    ci* | pci*)
+	export DEP_BRANCH=integration
+    *)
+	export DEP_BRANCH=${BRANCH}
+esac;;
 
 
-    yum -y install metwork-mfext-layer-rabbitmq-${DRONE_BRANCH##release_}
+    yum -y install metwork-mfext-layer-rabbitmq-${DEP_BRANCH##release_}
 
 
 git config --global --add safe.directory /src
